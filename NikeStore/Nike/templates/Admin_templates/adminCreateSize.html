@@ -1,0 +1,33 @@
+{% extends 'Admin_templates/adminPanel.html' %}
+{% load static %}
+
+{% block adminContainer %}
+            <div class="container">
+                           <div class="row mt-5">
+                                 <div class="col col-4 offset-3">
+                                         <form action="{% url 'createSize' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="form-group mt-3">
+                                                        <label>Shoe</label>
+                                                        <select name="shoe_id">
+                                                            {% for shoe in shoes %}
+                                                                <option value="{{ shoe.id }}">{{ shoe.id }}  {{shoe.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <label>Size number</label>
+                                                        <input type="number" name="sizeNumb" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <label>Size amount</label>
+                                                        <input type="number" name="sizeAmount" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group btns mt-3">
+                                                        <button class="btn btn-success">Create</button>
+                                                    </div>
+                                        </form>
+                                 </div>
+                           </div>
+                      </div>
+{% endblock adminContainer %}

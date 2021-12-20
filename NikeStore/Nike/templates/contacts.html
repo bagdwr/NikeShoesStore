@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+{% load static %}
+
+    {% block cssLink %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
+    {% endblock cssLink %}
+
+
+       {% block container %}
+       <div class="contactsContainer">
+          <div class="insideContainer">
+               <div class="contacts3Divs">
+                            <div class="divCont">
+                                    <div  class="imgDiv imgDiv1"><img src="{% static '/pictures/1.png' %}" width="30px" height="25px"></div>
+                                    <div  class="textDiv">
+                                        <h2>EMAIL</h2>
+                                        <p>NIKE@gmail.com</p>
+                                        <p>NIKE_KZ@gmail.com</p>
+                                    </div>
+                             </div>
+                             <div class="divCont">
+                                     <div class="imgDiv imgDiv2"><img src="{% static '/pictures/2.png' %}" height="50px" width="50px"></div>
+                                        <div class="textDiv">
+                                           <h2>OUR OFFICE</h2>
+                                           <p>Esentai avenue, 555</p>
+                                        </div>
+                             </div>
+                             <div class="divCont">
+                                      <div  class="imgDiv imgDiv3"><img src="{% static '/pictures/3.png' %}" width="35px" height="35px"></div>
+                                        <div  class="textDiv">
+                                            <h2>PHONE</h2>
+                                            <p>+7 777 777 77 77</p>
+                                            <p>+7 777 777 77 78</p>
+                                        </div>
+                            </div>
+               </div>
+               <div class="formDiv">
+                    <form action="{% url 'submitContact' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="first">
+                                <input type="textfield" name="name" class="block1" placeholder="Your name">
+                                <input type="textfield" name="email" class="block1" placeholder="Email address">
+                                <input type="textfield" name="subject" class="block1" placeholder="Subject">
+                            </div>
+                            <textarea type="textarea" name="message" id="Second"></textarea>
+                            <input type="submit" value="SUBMIT NOW" name="" id="ButtonLast">
+                    </form>
+               </div>
+               <div class="mapDiv">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23251.945890683823!2d76.92553147653265!3d43.241083529558374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836f02728a4313%3A0xadd455a680d4f906!2sNike!5e0!3m2!1sen!2skz!4v1633584824064!5m2!1sen!2skz" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+               </div>
+          </div>
+     </div>
+     {% endblock container %}
+

@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block cssLink %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/details.css" %}">
+{% endblock cssLink %}
+
+{% block container %}
+    <div class="backContainer">
+          <div class="shoeContainer">
+              <div class="detailsImage">
+                    <img class="shoeImg" src="{% static 'media/' %}{{ shoe.image_url }}">
+              </div>
+              <div class="detailsInfoRight">
+                   <form method="post" action="{% url 'addBasketShoe' %}" class="detailsInfo">
+                        {% csrf_token %}
+                        <div class="detailsInfoDiv">
+                            <h1>{{ shoe.name }}</h1>
+                            <h5>For {{ shoe.genderId.genderName }}</h5>
+                        </div>
+                       <div class="sizes">
+                                <input type="hidden" name="shoeId" value="{{ shoe.id }}">
+                                {% for size in shoe.sizes %}
+                                     <input type="radio" class="radioSize" value="{{ size.id }}" name="sizeId" id="size{{ size.id }}" required>
+                                     <label class="size" for="size{{ size.id }}">{{ size.sizeNumb }}</label>
+                                {% endfor %}
+                            </div>
+                            <h2 class="priceInfo">{{ shoe.price }} $</h2>
+                            <p class="color">{{ shoe.color }}</p>
+                            <p class="description">{{ shoe.description }}</p>
+                            <input type="submit" class="addToCart" value="Add to cart">
+                   </form>
+              </div>
+          </div>
+    </div>
+{% endblock %}

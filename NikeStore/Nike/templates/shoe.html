@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+
+    {% block cssLink %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/men.css' %}">
+    {% endblock cssLink %}
+
+
+    {% block container %}
+     <div class="itemsContainer">
+     	<div class="h1Container">
+     		<h2 class="menH1">{{ header }}</h2>
+     	</div>
+     	<div class="items">
+            {% for shoeLocal in list %}
+                 <a style="text-decoration: none; color:white" href="/details?id={{ shoeLocal.id }}">
+                        <form method="post" action="{% url 'addBasketShoe' %}">
+                             {% csrf_token %}
+                             <div class="item">
+                                <img src="{% static  'media/'%}{{shoeLocal.image_url }}" class="itemsImg">
+                                <div class="shoesName">{{ shoeLocal.name }}</div>
+                                <div class="shoesInfo" style="display:none">
+                                    <p class="shoesNameP">{{ shoeLocal.name }}</p>
+                                    <p class="price">{{ shoeLocal.price }}$</p>
+                                    <div class="sizes">
+                                        <span>size:</span>
+                                          <input type="hidden" name="shoeId" value="{{ shoeLocal.id }}">
+                                          {% for size in shoeLocal.sizes %}
+                                             <input type="radio" class="radioSize" value="{{ size.id }}" name="sizeId" id="size{{ size.id }}" required>
+                                             <label class="size" for="size{{ size.id }}">{{ size.sizeNumber }}</label>
+                                          {% endfor %}
+                                    </div>
+                                    <input type="submit" class="addToCart" value="Add to cart">
+                                </div>
+                             </div>
+                        </form>
+                 </a>
+            {% endfor %}
+     	</div>
+     </div>
+    {% endblock container %}

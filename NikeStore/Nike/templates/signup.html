@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% load static %}
+
+    {% block cssLink %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+    {% endblock cssLink %}
+
+     {% block container %}
+     <div class="divContainer">
+     	 <form class="formClass" method="POST" action="{% url 'signUpUser' %}">
+             {% csrf_token %}
+     	 	  	   <input type="email" name="email" placeholder="email" class="email">
+                   <input type="text" name="name" placeholder="name">
+                   <input type="text" name="phone" placeholder="phone number">
+     	 	  	   <input type="password" name="password" placeholder="password">
+
+
+     	 	  	   <div class="formDiv">
+     	 	  	   	   <button type="submit">Signup</button>
+     	 	  	   </div>
+     	 </form>
+     </div>
+     {% endblock container %}
+

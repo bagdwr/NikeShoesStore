@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% load static %}
+
+    {% block cssLink %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    {% endblock cssLink %}
+
+
+    {% block container %}
+                 <div class="divContainer">
+                     <form class="formClass" method="POST" action="{% url 'loginUser' %}">
+                            {% csrf_token %}
+                               <input type="email" name="email" placeholder="email" class="email">
+                               <input type="password" name="password" placeholder="password">
+                                  <div class="formDiv">
+                                           <button type="submit">Login</button>
+                                           <a href="/signup">Sign up</a>
+                                  </div>
+
+                     </form>
+                 </div>
+    {% endblock container %}
+

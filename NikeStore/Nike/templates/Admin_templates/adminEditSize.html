@@ -1,0 +1,34 @@
+{% extends 'Admin_templates/adminPanel.html' %}
+{% load static %}
+
+{% block adminContainer %}
+            <div class="container">
+                           <div class="row mt-5">
+                                 <div class="col col-4 offset-3">
+                                         <form action="{% url 'editSize' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="id" value="{{ size.id }}">
+                                                    <div class="form-group mt-3">
+                                                        <label>Shoe</label>
+                                                        <select name="shoe_id">
+                                                             {% for shoe in shoes %}
+                                                                  <option value="{{ shoe.id }}" {% if size.shoeId_id == shoe.id %} selected {% endif %}>{{ shoe.id }} {{ shoe.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <label>Size number</label>
+                                                        <input type="number" name="sizeNumb" value="{{ size.sizeNumb }}" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <label>Size amount</label>
+                                                        <input type="number" name="sizeAmount" value="{{ size.sizeAmount }}"  class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group btns mt-3">
+                                                        <button class="btn btn-success">Save</button>
+                                                    </div>
+                                        </form>
+                                 </div>
+                           </div>
+                      </div>
+{% endblock adminContainer %}
