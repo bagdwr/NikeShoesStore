@@ -1,5 +1,4 @@
 import django as django
-
 from django.shortcuts import render
 from .Classes import ShoeLocal
 from .DBmanager import *
