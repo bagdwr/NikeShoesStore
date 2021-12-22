@@ -38,9 +38,9 @@
                     <form action="{% url 'submitContact' %}" method="POST">
                             {% csrf_token %}
                             <div class="first">
-                                <input type="textfield" name="name" class="block1" placeholder="Your name">
-                                <input type="textfield" name="email" class="block1" placeholder="Email address">
-                                <input type="textfield" name="subject" class="block1" placeholder="Subject">
+                                <input type="text" name="name" class="block1" placeholder="Your name">
+                                <input type="text" name="email" class="block1" placeholder="Email address">
+                                <input type="text" name="subject" class="block1" placeholder="Subject">
                             </div>
                             <textarea type="textarea" name="message" id="Second"></textarea>
                             <input type="submit" value="SUBMIT NOW" name="" id="ButtonLast">

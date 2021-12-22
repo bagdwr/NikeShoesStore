@@ -4,75 +4,90 @@ from .Classes import ShoeLocal
 from .DBmanager import *
 from .models import *
 
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import login,logout, authenticate
-from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth import login, logout, authenticate
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.http import *
 from django.contrib.auth.decorators import login_required
 import json
 
-SHOES=list()
+SHOES = list()
+
 
 def getOverallPrice():
-    sum=0
+    sum = 0
     for shoe in SHOES:
-        sum=sum+shoe.price
+        sum = sum + shoe.price
     return sum
 
+
 def index(request):
-    return render(request,"index.html",context={'summa':getOverallPrice()})
+    return render(request, "index.html", context={'summa': getOverallPrice()})
+
 
 def showMen(request):
-    menShoes=getAllMenShoes()
-    data_dict = {'list': menShoes,'header':'Men shoes','summa':getOverallPrice()}
-    return render(request,"shoe.html",context=data_dict)
+    menShoes = getAllMenShoes()
+    data_dict = {'list': menShoes, 'header': 'Men shoes', 'summa': getOverallPrice()}
+    return render(request, "shoe.html", context=data_dict)
+
 
 def showWomen(request):
-    womenShoes=getAllWomenShoes()
-    data_dict = {'list': womenShoes,'header':'Women shoes','summa':getOverallPrice()}
-    return render(request,"shoe.html",context=data_dict)
+    womenShoes = getAllWomenShoes()
+    data_dict = {'list': womenShoes, 'header': 'Women shoes', 'summa': getOverallPrice()}
+    return render(request, "shoe.html", context=data_dict)
+
 
 def showContacts(request):
-    return render(request,"contacts.html",context={'summa':getOverallPrice()})
+    return render(request, "contacts.html", context={'summa': getOverallPrice()})
+
 
 def showBasket(request):
-    return render(request,"basket.html",context={'shoes':SHOES,'summa':getOverallPrice()})
+    return render(request, "basket.html", context={'shoes': SHOES, 'summa': getOverallPrice()})
+
 
 def showShoeDetails(request):
-    return render(request,"details.html", context={'shoe':getShoeLocalById(request.GET['id']),'summa':getOverallPrice()})
+    return render(request, "details.html",
+                  context={'shoe': getShoeLocalById(request.GET['id']), 'summa': getOverallPrice()})
+
 
 @csrf_exempt
 def signUpUser(request):
-    if request.method=='GET':
-        return render(request, 'signup.html', {'form': UserCreationForm(),'summa':getOverallPrice()})
+    if request.method == 'GET':
+        return render(request, 'signup.html', {'form': UserCreationForm(), 'summa': getOverallPrice()})
     else:
         try:
-            user=User.objects.create_user(username=request.POST['email'],last_name=request.POST['phone'],password=request.POST['password'],email=request.POST['email'])
+            if User.objects.filter(username=request.POST['email']).exists() or User.objects.filter(
+                    username=request.POST['email']).exists():
+                return render(request, 'signup.html', {'form': UserCreationForm(), 'summa': getOverallPrice(), 'error':'there is already such email'})
+            user = User.objects.create_user(username=request.POST['email'], last_name=request.POST['phone'],
+                                            password=request.POST['password'], email=request.POST['email'])
             user.save()
             login(request, user)
             return redirect('/')
-        except IntegrityError:
-            return render(request, 'signup.html', {'form': UserCreationForm()}, 'error', 'this acc - ',)
+        except Exception as e:
+            return render(request, 'signup.html', {'form': UserCreationForm()}, 'error', 'this acc - ', )
+
 
 @csrf_exempt
 def loginUser(request):
     if request.method == 'GET':
-        return render(request, 'login.html', {'form':AuthenticationForm(),'summa':getOverallPrice()})
+        return render(request, 'login.html', {'form': AuthenticationForm(), 'summa': getOverallPrice()})
     else:
         user = authenticate(request, username=request.POST['email'], password=request.POST['password'])
         if user is None:
-          return redirect('/login')
+            return redirect('/login')
         else:
             login(request, user)
             return redirect('/')
 
+
 def addBasketShoe(request):
-    if request.method=='POST':
-        size=getSizeById(request.POST['sizeId'])
-        shoe=getShoeById(request.POST['shoeId'])
+    if request.method == 'POST':
+        size = getSizeById(request.POST['sizeId'])
+        shoe = getShoeById(request.POST['shoeId'])
 
         # shoes=list()
         # shoesFromSession=request.session.get('basketShoes',None)
@@ -87,10 +102,11 @@ def addBasketShoe(request):
             SHOES.append(shoe)
             print(SHOES)
 
-        if shoe.genderId_id==1:
+        if shoe.genderId_id == 1:
             return redirect('/men')
         else:
             return redirect('/women')
+
 
 # region admin
 @login_required
@@ -99,6 +115,7 @@ def logoutUser(request):
         logout(request)
         return redirect('loginUser')
 
+
 @login_required
 def showAdminPanel(request):
     if request.user.is_superuser:
@@ -106,27 +123,30 @@ def showAdminPanel(request):
     else:
         return redirect('/')
 
+
 @login_required
 def showAdminShoes(request):
     if request.user.is_superuser:
-        allShoes=getAllMenShoes()+getAllWomenShoes()
-        return render(request, 'Admin_templates/adminShoes.html', context={'shoes':allShoes})
+        allShoes = getAllMenShoes() + getAllWomenShoes()
+        return render(request, 'Admin_templates/adminShoes.html', context={'shoes': allShoes})
     else:
         return redirect('/')
 
+
 @login_required
 def showAdminCreateShoe(request):
-    if request.method=='GET':
+    if request.method == 'GET':
         return render(request, 'Admin_templates/adminCreateShoe.html')
-    if request.method=='POST':
+    if request.method == 'POST':
         if createShoe(request):
             return redirect('/adminShoes')
         return redirect('/adminPanel')
 
+
 @login_required
 def deleteShoeById(request):
     if request.user.is_superuser:
-        if request.method=='GET':
+        if request.method == 'GET':
             if deleteShoe(request):
                 return redirect('/adminShoes')
         else:
@@ -134,16 +154,19 @@ def deleteShoeById(request):
     else:
         return redirect('/')
 
+
 @login_required
 def editShoe(request):
     if request.user.is_superuser:
-        if request.method=='GET':
-            return render(request, 'Admin_templates/adminEditShoe.html', context={'shoe':getShoeById(request.GET['id'])})
-        if request.method=='POST':
+        if request.method == 'GET':
+            return render(request, 'Admin_templates/adminEditShoe.html',
+                          context={'shoe': getShoeById(request.GET['id'])})
+        if request.method == 'POST':
             if updateShoe(request):
-               return redirect('/adminShoes')
+                return redirect('/adminShoes')
     else:
         return redirect('/')
+
 
 @login_required
 def showUsers(request):
@@ -152,6 +175,7 @@ def showUsers(request):
     else:
         return redirect('/')
 
+
 @login_required
 def showSizes(request):
     if request.user.is_superuser:
@@ -159,14 +183,17 @@ def showSizes(request):
     else:
         return redirect('/')
 
+
 @login_required
 def showAdminCreateSize(request):
     if request.method == 'GET':
-        return render(request, 'Admin_templates/adminCreateSize.html', context={'shoes':getAllMenShoes()+getAllWomenShoes()})
+        return render(request, 'Admin_templates/adminCreateSize.html',
+                      context={'shoes': getAllMenShoes() + getAllWomenShoes()})
     if request.method == 'POST':
         if createSize(request):
             return redirect('/adminSizes')
         return redirect('/adminPanel')
+
 
 @login_required
 def deleteSizeById(request):
@@ -179,22 +206,27 @@ def deleteSizeById(request):
     else:
         return redirect('/')
 
+
 @login_required
 def editSize(request):
     if request.user.is_superuser:
-        if request.method=='GET':
-            return render(request, 'Admin_templates/adminEditSize.html', context={'size':getSizeById(request.GET['id']),'shoes':getAllMenShoes()+getAllWomenShoes()})
-        if request.method=='POST':
+        if request.method == 'GET':
+            return render(request, 'Admin_templates/adminEditSize.html',
+                          context={'size': getSizeById(request.GET['id']),
+                                   'shoes': getAllMenShoes() + getAllWomenShoes()})
+        if request.method == 'POST':
             if updateSize(request):
-               return redirect('/adminSizes')
+                return redirect('/adminSizes')
     else:
         return redirect('/')
 
+
 @login_required
 def submitContact(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         if createContact(request):
             return redirect('/contacts')
+
 
 @login_required
 def showAdminContacts(request):
@@ -203,6 +235,7 @@ def showAdminContacts(request):
                       context={'contacts': getAllContacts()})
     else:
         return redirect('/')
+
 
 @login_required
 def deleteContact(request):
@@ -214,45 +247,53 @@ def deleteContact(request):
             return redirect('/adminPanel')
     else:
         return redirect('/')
-#endregion
+
+
+# endregion
 
 def clearAll(request):
     SHOES.clear()
     return redirect('/showBasket')
 
+
 @login_required
 def makePurchase(request):
-    if request.method=='POST':
-        shoes=SHOES
-        if createOrder(request,shoes):
-           clearAll(request)
+    if request.method == 'POST':
+        shoes = SHOES
+        if createOrder(request, shoes):
+            clearAll(request)
     return redirect('/')
+
 
 @login_required
 def showAdminOrders(request):
     if request.user.is_superuser:
-        if request.method=='GET':
-            ords=getAllOrders()
-            orders=list()
+        if request.method == 'GET':
+            ords = getAllOrders()
+            orders = list()
             for order in ords:
-                orderShoes=getOrderShoe(order.orderNumber)
-                shoes=list()
+                orderShoes = getOrderShoe(order.orderNumber)
+                shoes = list()
                 for orderShoe in orderShoes:
-                    shoe=getShoeById(orderShoe.shoeId_id)
-                    shoes.append(ShoeLocal(shoe.id,shoe.name,shoe.price,shoe.genderId,shoe.image,shoe.description,shoe.color,getSizeById(orderShoe.sizeId_id)))
-                orders.append(OrderLocal(order.id,orderNumber=order.orderNumber,shoes=shoes,orderUser=order.userId,overallPrice=getShoesOverallPrice(shoes)))
-            return render(request,'Admin_templates/adminOrders.html',context={'orders':orders})
+                    shoe = getShoeById(orderShoe.shoeId_id)
+                    shoes.append(ShoeLocal(shoe.id, shoe.name, shoe.price, shoe.genderId, shoe.image, shoe.description,
+                                           shoe.color, getSizeById(orderShoe.sizeId_id)))
+                orders.append(OrderLocal(order.id, orderNumber=order.orderNumber, shoes=shoes, orderUser=order.userId,
+                                         overallPrice=getShoesOverallPrice(shoes)))
+            return render(request, 'Admin_templates/adminOrders.html', context={'orders': orders})
+
 
 def getShoesOverallPrice(shoes):
-    sum=0
+    sum = 0
     for shoe in shoes:
-        sum=shoe.price+sum
+        sum = shoe.price + sum
     return sum
+
 
 @login_required
 def showDetails(request):
     if request.user.is_superuser:
-        if request.method=='GET':
+        if request.method == 'GET':
             orderShoes = getOrderShoe(request.GET['orderNumber'])
             shoes = list()
             for orderShoe in orderShoes:
@@ -260,4 +301,4 @@ def showDetails(request):
                 shoes.append(
                     ShoeLocal(shoe.id, shoe.name, shoe.price, shoe.genderId, shoe.image, shoe.description, shoe.color,
                               getSizeById(orderShoe.sizeId_id)))
-            return render(request,'Admin_templates/adminDetailsOrder.html',context={'shoes':shoes})
+            return render(request, 'Admin_templates/adminDetailsOrder.html', context={'shoes': shoes})
