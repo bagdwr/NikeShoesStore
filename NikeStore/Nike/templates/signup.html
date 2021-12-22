@@ -10,7 +10,7 @@
         <form class="formClass" method="POST" action="{% url 'signUpUser' %}">
             {% csrf_token %}
             {% if error %}
-                <p class="error">{{ error }}</p>
+                <p class="error" style="color:white">{{ error }}</p>
             {% endif %}
             <input type="email" name="email" placeholder="email" class="email_input">
             <input type="text" name="name" placeholder="name">

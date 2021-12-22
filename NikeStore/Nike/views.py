@@ -113,6 +113,7 @@ def addBasketShoe(request):
 def logoutUser(request):
     if request.method == 'GET':
         logout(request)
+        clearAll(request)
         return redirect('loginUser')
 
 
