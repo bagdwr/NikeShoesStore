@@ -5,157 +5,165 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Roboto&display=swap"
+          rel="stylesheet">
 
     {% block cssLink %}
     {% endblock cssLink %}
 </head>
 <body>
-    {% block navbar %}
-            <div class="menuContainer">
-                           <nav>
-                                <div class="topMenu">
-                                                <img src="{% static '/pictures/airjordanLogo.png' %}" class="logoImg">
-                                        <div class="burgerMenu">
-                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                                            </svg>
-                                        </div>
+{% block navbar %}
+    <div class="menuContainer">
+        <nav>
+            <div class="topMenu">
+                <img src="{% static '/pictures/airjordanLogo.png' %}" class="logoImg">
+                <div class="burgerMenu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                         class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+                    </svg>
+                </div>
 
-                                        <div class="basketTop">
-                                            <a href="/showBasket" class="basketTop" style="text-decoration: none;">
-                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
-                                                  <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
-                                                </svg>
-                                                <div class="totalDiv">
-                                                         <p class="total">Total</p>
-                                                            <h2 class="totalPrice">{{ summa }}$</h2>
-                                                </div>
-                                            </a>
-                                        </div>
-                                </div>
-
-                                <ul class="navUl" id="navUlID">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/men">Men</a></li>
-                                    <li><a href="/women">Women</a></li>
-                                    <li><a href="/contacts">Contacts</a></li>
-                                    {% if not user.is_authenticated %}
-                                        <li><a href="/login">Login</a></li>
-                                    {% else %}
-                                           {% if  user.is_superuser %}
-                                              <li><a href="/adminPanel">Admin</a></li>
-                                          {% endif %}
-                                         <li>
-                                                <a href="{% url 'logoutUser' %}">Logout</a>
-                                         </li>
-                                    {% endif %}
-
-                                </ul>
-                                <div class="basket" id="bottomBasket">
-                                    <a href="/showBasket" class="basket" style="text-decoration: none;">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
-                                          <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
-                                        </svg>
-                                        <div class="totalDiv">
-                                            <p class="total">Total</p>
-                                            <h2 class="totalPrice">{{ summa }}$</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                           </nav>
+                <div class="basketTop">
+                    <a href="{% url 'index' %}" class="basketTop" style="text-decoration: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                             class="bi bi-basket" viewBox="0 0 16 16">
+                            <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"></path>
+                        </svg>
+                        <div class="totalDiv">
+                            <p class="total">Total</p>
+                            <h2 class="totalPrice">{{ summa }}$</h2>
+                        </div>
+                    </a>
+                </div>
             </div>
-    {% endblock navbar %}
 
-    {% block container %}
-    {% endblock container %}
+            <ul class="navUl" id="navUlID">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'men' %}">Men</a></li>
+                <li><a href="{% url 'women' %}">Women</a></li>
+                <li><a href="{% url 'contacts' %}">Contacts</a></li>
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'loginUser' %}">Login</a></li>
+                {% else %}
+                    {% if  user.is_superuser %}
+                        <li><a href="{% url 'adminPanel' %}">Admin</a></li>
+                    {% endif %}
+                    <li>
+                        <a href="{% url 'logoutUser' %}">Logout</a>
+                    </li>
+                {% endif %}
 
-    {% block footer %}
-              <footer>
-                    <div class="footer-top">
-                        <div class="footer-info">
-                            <h4>Nike</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis sagittis metus. Morbi magna arcu, vehicula a mollis quis, mattis at quam. Morbi vitae magna vulputate, ultricies leo in, bibendum orci. Praesent.</p>
-                        </div>
-                        <div class="footer-nav">
-                            <ul>
-                                <li>
-                                    <a href="/">Home</a>
-                                </li>
-                                <li>
-                                    <a href="/men">Men</a>
-                                </li>
-                                <li>
-                                    <a href="/women">Women</a>
-                                </li>
-                                <li>
-                                    <a href="/contacts">Contacts</a>
-                                </li>
-                                {% if not user.is_authenticated %}
-                                     <li>
-                                         <a href="/login">Login</a>
-                                     </li>
-                                {% else %}
-                                     <li>
-                                         <a href="/logout">Logout</a>
-                                     </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                        <div class="footer-links">
-                            <div class="socialNetworks">
-                                <ul>
-                                    <li>
-                                        <a href="https://instagram.com/nike">
-                                            <img src="{% static '/pictures/footer_instagram.png' %}">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.facebook.com/nike">
-                                            <img src="{% static '/pictures/footer_facebook.png' %}">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/Nike">
-                                            <img src="{% static '/pictures/footer_twitter.png' %}">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.youtube.com/user/nike">
-                                            <img src="{% static '/pictures/footer_youtube.png' %}">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="subscription">
-                                <h4>Subscribe for updates</h4>
-                                <form>
-                                    <input
-                                        class="email_input"
-                                        type="email"
-                                        placeholder="Your email"
-                                        required
-                                    >
-                                    <input class="btn-input" type="image" src="{% static '/pictures/send_icon.png' %}">
-                                </form>
-                            </div>
-                        </div>
+            </ul>
+            <div class="basket" id="bottomBasket">
+                <a href="{% url 'basket' %}" class="basket" style="text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                         class="bi bi-basket" viewBox="0 0 16 16">
+                        <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"></path>
+                    </svg>
+                    <div class="totalDiv">
+                        <p class="total">Total</p>
+                        <h2 class="totalPrice">{{ summa }}$</h2>
                     </div>
-                    <div class="footer-bottom">
-                        <p>@All Rights Reserved. Designed by Muslimov Temirlan and Sakhtarov Daurbek</p>
-                    </div>
-              </footer>
-    {% endblock footer %}
-    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+                </a>
+            </div>
+        </nav>
+    </div>
+{% endblock navbar %}
+
+{% block container %}
+{% endblock container %}
+
+{% block footer %}
+    <footer>
+        <div class="footer-top">
+            <div class="footer-info">
+                <h4>Nike</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis sagittis metus. Morbi magna arcu,
+                    vehicula a mollis quis, mattis at quam. Morbi vitae magna vulputate, ultricies leo in, bibendum
+                    orci. Praesent.</p>
+            </div>
+            <div class="footer-nav">
+                <ul>
+                    <li>
+                        <a href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'men' %}">Men</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'women' %}">Women</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contacts' %}">Contacts</a>
+                    </li>
+                    {% if not user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'loginUser' %}">Login</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'logoutUser' %}">Logout</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="footer-links">
+                <div class="socialNetworks">
+                    <ul>
+                        <li>
+                            <a href="https://instagram.com/nike">
+                                <img src="{% static '/pictures/footer_instagram.png' %}">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/nike">
+                                <img src="{% static '/pictures/footer_facebook.png' %}">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/Nike">
+                                <img src="{% static '/pictures/footer_twitter.png' %}">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/user/nike">
+                                <img src="{% static '/pictures/footer_youtube.png' %}">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="subscription">
+                    <h4>Subscribe for updates</h4>
+                    <form>
+                        <input
+                                class="email_input"
+                                type="email"
+                                placeholder="Your email"
+                                required
+                        >
+                        <input class="btn-input" type="image" src="{% static '/pictures/send_icon.png' %}">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>@All Rights Reserved. Designed by Muslimov Temirlan and Sakhtarov Daurbek</p>
+        </div>
+    </footer>
+{% endblock footer %}
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
 </body>
 </html>

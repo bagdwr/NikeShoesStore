@@ -1,31 +1,32 @@
 {% extends "main.html" %}
 {% load static %}
 
-    {% block cssLink %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    {% endblock cssLink %}
+{% block cssLink %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock cssLink %}
 
 
-     {% block container %}
-                <div class="banner-background">
-                        <div class="banner">
-                            <img class="banner-image" src="{% static '/pictures/banner_1.png' %}">
-                            <div class="banner-info">
-                                <h3>Lorem ipsum dolor</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce diam turpis, commodo vel tortor at,
-                                    elementum
-                                    viverra nisi. Morbi lectus.</p>
-                                <button class="banner-button">BUY NOW</button>
-                            </div>
-                        </div>
-                </div>
-                <div class = "collection-title">NEW COLLECTION</div>
+{% block container %}
+    <div class="banner-background">
+        <div class="banner">
+            <img class="banner-image" src="{% static '/pictures/banner_1.png' %}">
+            <div class="banner-info">
+                <h3>Lorem ipsum dolor</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce diam turpis, commodo vel tortor at,
+                    elementum
+                    viverra nisi. Morbi lectus.</p>
+                <button class="banner-button"><a style="text-decoration: none; color: #EEEEEE" class="buy-link"
+                                                 href="{% url 'men' %}">BUY NOW</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="collection-title">NEW COLLECTION</div>
 
-                <div class="collection-container">
-                    <img src="{% static '/pictures/collection1.jpg' %}">
-                    <img src="{% static '/pictures/collection2.jpg' %}">
-                    <img src="{% static '/pictures/collection3.jpg' %}">
-                </div>
-    {% endblock container %}
+    <div class="collection-container">
+        <img src="{% static '/pictures/collection1.jpg' %}">
+        <img src="{% static '/pictures/collection2.jpg' %}">
+        <img src="{% static '/pictures/collection3.jpg' %}">
+    </div>
+{% endblock container %}
 
 

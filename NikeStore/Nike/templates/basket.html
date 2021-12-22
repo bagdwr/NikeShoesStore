@@ -1,51 +1,52 @@
 {% extends 'main.html' %}
 {% load static %}
 
-    {% block cssLink %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/basket.css' %}">
-    {% endblock cssLink %}
+{% block cssLink %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/basket.css' %}">
+{% endblock cssLink %}
 
 
-    {% block container %}
-        <div class="basketBackground">
-             <div class="basketContainer">
-                 {% if shoes %}
-                     <a href="/clearAll" class="clearButton">Clear all</a>
-                             {% for shoe in shoes %}
-                                <div class="shoeItem">
-                                  <div class="divLeft">
-                                      <img src="{% static  'media/'%}{{shoe.image }}" class="shoeImg">
-                                      <div class="shoeInfoDiv">
-                                          <p class="shoeName">{{ shoe.name }}</p>
-                                          <p class="shoeGender">{{ shoe.genderId.genderName }}</p>
-                                          <p class="shoeSize">{{shoe.sizes.sizeNumb }}</p>
-                                      </div>
-                                  </div>
-                                  <div class="divRight">
-                                      <p class="shoePrice">{{ shoe.price }}$</p>
-                                  </div>
-                              </div>
-                             {% endfor %}
-                             <form action="{% url 'makePurchase' %}" method="post">
-                                 {% csrf_token %}
-                                 <input type="submit" value="Order" class="btnSubmit">
-                            </form>
-                 {% else %}
-                     <h1 class="errorMessage">YOUR BASKET IS EMPTY</h1>
-                     <style>
-                         .basketContainer{
-                             display: flex;
-                             justify-content: center;
-                             align-items: center;
-                             height: 100vh;
-                         }
-                         .errorMessage{
-                            text-align: center;
-                         }
-                     </style>
-                 {% endif %}
+{% block container %}
+    <div class="basketBackground">
+        <div class="basketContainer">
+            {% if shoes %}
+                <a href="{% url 'clearBasket' %}" class="clearButton">Clear all</a>
+                {% for shoe in shoes %}
+                    <div class="shoeItem">
+                        <div class="divLeft">
+                            <img src="{% static 'media/' %}{{ shoe.image }}" class="shoeImg">
+                            <div class="shoeInfoDiv">
+                                <p class="shoeName">{{ shoe.name }}</p>
+                                <p class="shoeGender">{{ shoe.genderId.genderName }}</p>
+                                <p class="shoeSize">{{ shoe.sizes.sizeNumb }}</p>
+                            </div>
+                        </div>
+                        <div class="divRight">
+                            <p class="shoePrice">{{ shoe.price }}$</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <form action="{% url 'makePurchase' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Order" class="btnSubmit">
+                </form>
+            {% else %}
+                <h1 class="errorMessage">YOUR BASKET IS EMPTY</h1>
+                <style>
+                    .basketContainer {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                    }
 
-             </div>
+                    .errorMessage {
+                        text-align: center;
+                    }
+                </style>
+            {% endif %}
+
         </div>
+    </div>
 
-    {% endblock container %}
+{% endblock container %}
